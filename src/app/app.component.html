@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+
+<div class="p-4" style="text-align: center;">
+
+<app-header></app-header>
+
+<div class="p-4">
+    <div class="container">
+        <p><a routerLink="/">Home</a> | <a routerLink="/booking">Book Seat</a></p>
+    </div>
+</div>
+
+
+<!-- nav -->
+<!--nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav-->
+
+<!-- main app container -->
+
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+</div>
+</body>
+</html>

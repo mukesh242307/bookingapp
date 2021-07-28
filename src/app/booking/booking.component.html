@@ -1,0 +1,63 @@
+<div class="container">
+
+    <h1>Booking Form</h1>      
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">   
+
+       <div class="form-group">	   
+	      <div *ngIf="seatBooked" class="alert alert-success">Booked successfully. Your seat(s) number {{booked_seats}}. </div>	   
+	      <div *ngIf="notBooked" [ngSwitch]="remaining_seats">
+		  
+		       <div *ngSwitchCase="0" class="alert alert-danger">
+				  Sorry, no seat available!!
+			  </div>
+
+			   <div *ngSwitchDefault class="alert alert-danger">
+				  Only {{remaining_seats}} seat(s) are available!!
+			  </div>
+          </div>  
+        </div>
+			
+		<div class="form-group" style="width:400px; margin: 34px 0px 0px 356px;" *ngIf="seatBooked">
+		   <mat-grid-list cols="7" rowHeight="2:1">
+				<mat-grid-tile *ngFor='let data of booking_data'  [ngClass]="{'booked':data.booked === 1,'notbooked':data.booked === 0}" >
+				   <span >{{data.seat_no}}</span>
+				 </mat-grid-tile>								 
+			</mat-grid-list>
+			<br>
+			
+			<div style="width:100px;" class="booked">
+				 Booked
+			</div>
+			
+			<div style="width:100px;" class="notbooked">
+				 Available
+			</div>
+			<br><br>
+		</div> 
+		
+		
+        <div class="form-group">
+            <label for="no_of_seat">No Of Seats *</label>
+            <input formControlName="no_of_seat" id="no_of_seat" type="text" autofocus maxlength=1 class="form-control" placeholder="No Of Seats">
+
+            <div *ngIf="f.no_of_seat.touched && f.no_of_seat.invalid" class="alert alert-danger">
+			
+                <div *ngIf="f.no_of_seat.errors.required">No Of Seats is required.</div>
+
+                <div *ngIf="f.no_of_seat.errors.pattern">Enter only number.</div>
+				
+				<div *ngIf="f.no_of_seat.errors.max"> Cannot be more than 7.</div>
+				
+				<div *ngIf="f.no_of_seat.errors.min">Must be greater than zero.</div>	
+
+            </div>		
+
+        </div>       
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        <br><br><br><br>
+    </form>
+
+</div>
+
